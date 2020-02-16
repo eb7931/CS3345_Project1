@@ -31,6 +31,41 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		else if(e.getSource() == buttons.insertion) {
 			list.insertionSort();
 		}
+		else if(e.getSource() == buttons.selection) {
+			list.selectionSort();
+		}
+		else if(e.getSource() == buttons.quick) {
+			list.quickSort();
+		}
+		else if(e.getSource() == buttons.merge) {
+			list.mergeSort();
+		}
+		else if(e.getSource() == buttons.heap) {
+			list.heapSort();
+		}
+		else if(e.getSource() == buttons.radix) {
+			list.radixSort();
+		}
+		else if(e.getSource() == buttons.bucket) {
+			list.bucketSort();
+		}
+		
+		
+		
+		updateOutput();
+	}
+	protected void updateOutput() {
+		text.NField.setText("");
+		text.DataTypeField.setText("");
+		text.SortField.setText("");
+		text.ComparisonsField.setText("");
+		text.MovementsField.setText("");
+		text.TotalTimeField.setText("");
+		text.winner.setText(winner());
+	}
+	protected String winner() {
+		String alg = "";
+		return alg;
 	}
 	public class Text{
 		//winner section
@@ -138,6 +173,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		JButton merge = new JButton("Merge Sort");
 		JButton heap = new JButton("Heap Sort");
 		JButton radix = new JButton("Radix Sort");		
+		JButton bucket = new JButton("Bucket Sort");		
 		JButton create = new JButton("Create this List");
 		public Buttons() {
 			//upon calling, it sets the format of each button
@@ -165,7 +201,10 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 			radix.setBackground(Styles.darkButton);
 			radix.setFont(Styles.plainTextFont);
 			radix.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-			
+
+			bucket.setBackground(Styles.darkButton);
+			bucket.setFont(Styles.plainTextFont);
+			bucket.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
 			almostOrder.setBackground(Styles.backgroundColor);
 			random.setBackground(Styles.backgroundColor);
@@ -199,7 +238,8 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		buttons.quick.addActionListener(this);
 		buttons.merge.addActionListener(this);
 		buttons.heap.addActionListener(this);
-		buttons.radix.addActionListener(this);		
+		buttons.radix.addActionListener(this);	
+		buttons.bucket.addActionListener(this);			
 		buttons.create.addActionListener(this);
 		
 	}	public void init() {
@@ -350,6 +390,8 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		sortButtons.add(buttons.heap, c);
 		c.gridy++;
 		sortButtons.add(buttons.radix, c);
+		c.gridy++;
+		sortButtons.add(buttons.bucket, c);
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 3;

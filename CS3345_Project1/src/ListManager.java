@@ -28,4 +28,22 @@ public class ListManager{
 	public void insertionSort() {
 		
 	}
+	public void selectionSort() {
+		
+	}
+	public void quickSort() {
+		
+	}
+	public void mergeSort() {
+		
+	}
+	public void heapSort() {
+		
+	}
+	public void radixSort() {
+		
+	}
+	public void bucketSort() {
+		
+	}
 }
