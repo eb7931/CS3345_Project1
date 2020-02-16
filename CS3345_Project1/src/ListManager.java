@@ -25,4 +25,7 @@ public class ListManager{
 			System.arraycopy(arr[0], 0, arr[i], 0, length);
 		}
 	}
+	public void insertionSort() {
+		
+	}
 }

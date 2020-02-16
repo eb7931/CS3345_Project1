@@ -29,7 +29,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 			}
 		}
 		else if(e.getSource() == buttons.insertion) {
-			Sort.insertionSort(list);
+			list.insertionSort();
 		}
 	}
 	public class Text{
