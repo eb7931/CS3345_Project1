@@ -7,6 +7,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 	protected Buttons buttons = new Buttons();
 	protected Text text = new Text();
 	protected ListManager list;
+	protected int selectedAlg = 0;
 
 	//Everything  needed to create the window in the format I want
 
@@ -15,42 +16,40 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource() == buttons.create) {
 			int l = Integer.parseInt(text.sizeField.getText());
-			if(e.getSource() == buttons.inOrder) {
+			if(buttons.inOrder.isSelected()) {
 				list = new InOrder(l);
 			}
-			else if(e.getSource() == buttons.reverseOrder) {
+			else if(buttons.reverseOrder.isSelected()) {
 				list = new ReverseOrder(l);
 			}
-			else if(e.getSource() == buttons.random) {
+			else if(buttons.random.isSelected()) {
 				list = new RandomOrder(l);
 			}
-			else if(e.getSource() == buttons.almostOrder) {
+			else if(buttons.almostOrder.isSelected()) {
 				list = new AlmostOrder(l);
 			}
 		}
 		else if(e.getSource() == buttons.insertion) {
-			list.insertionSort();
+			selectedAlg = 0;
 		}
 		else if(e.getSource() == buttons.selection) {
-			list.selectionSort();
+			selectedAlg = 1;
 		}
 		else if(e.getSource() == buttons.quick) {
-			list.quickSort();
+			selectedAlg = 2;
 		}
 		else if(e.getSource() == buttons.merge) {
-			list.mergeSort();
+			selectedAlg = 3;
 		}
 		else if(e.getSource() == buttons.heap) {
-			list.heapSort();
+			selectedAlg = 4;
 		}
 		else if(e.getSource() == buttons.radix) {
-			list.radixSort();
+			selectedAlg = 5;
 		}
 		else if(e.getSource() == buttons.bucket) {
-			list.bucketSort();
+			selectedAlg = 6;
 		}
-		
-		
 		
 		updateOutput();
 	}
