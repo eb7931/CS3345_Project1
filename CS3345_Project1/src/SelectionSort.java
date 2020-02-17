@@ -28,9 +28,6 @@ public class SelectionSort extends AlgMonitor{
 				move();
 			}
 		}
-		
-		
-
 		endTime = System.currentTimeMillis();
 	}
 }

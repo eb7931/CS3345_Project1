@@ -15,18 +15,15 @@ public class MergeSort extends AlgMonitor{
 			int[] firstHalf = new int[list.length / 2];
 			System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
 			run(firstHalf);
-			//merge sort the seconid half
+			//merge sort the second half
 			int secondHalfLength = list.length - list.length / 2;
 			int[] secondHalf = new int[secondHalfLength];
 			System.arraycopy(list, list.length / 2,  secondHalf,  0,  secondHalfLength);
 			run(secondHalf);
 			//merge first half with second half into list
 			merge(firstHalf, secondHalf, list);
-			
 		}
-		
 	}
-
 	public void merge(int[] list1, int[] list2, int[] temp) {
 		int current1 = 0; //current index in list1
 		int current2 = 0; //current index in list2
