@@ -8,10 +8,10 @@ abstract class AlgMonitor{
 		return comparisons;
 	}
 	public int movements() {
-		return comparisons;
+		return movements;
 	}
-	public int totalTime() {
-		return comparisons + movements;
+	protected String name() {
+		return name;
 	}
 	protected AlgMonitor(int[] list) {
 		run(list);

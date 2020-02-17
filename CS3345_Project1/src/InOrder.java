@@ -3,5 +3,6 @@ public class InOrder extends ListManager{
 		super(l);
 		sort();
 		copyArr();
+		sortAll();
 	}
 }

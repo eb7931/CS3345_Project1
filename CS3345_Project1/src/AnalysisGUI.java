@@ -8,62 +8,103 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 	protected Text text = new Text();
 	protected ListManager list;
 	protected int selectedAlg = 0;
+	private String dataType = "";
+	protected int length = 0;
 
 	//Everything  needed to create the window in the format I want
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == buttons.create) {
-			int l = Integer.parseInt(text.sizeField.getText());
-			if(buttons.inOrder.isSelected()) {
-				list = new InOrder(l);
+		try {
+			if(e.getSource() == buttons.create) {
+				int l = Integer.parseInt(text.sizeField.getText());
+				if(buttons.inOrder.isSelected()) {
+					list = new InOrder(l);
+					dataType = "In order";
+				}
+				else if(buttons.reverseOrder.isSelected()) {
+					list = new ReverseOrder(l);
+					dataType = "Reverse order";
+				}
+				else if(buttons.random.isSelected()) {
+					list = new RandomOrder(l);
+					dataType = "Random order";
+				}
+				else if(buttons.almostOrder.isSelected()) {
+					list = new AlmostOrder(l);
+					dataType = "Almost order";
+				}
+				length = l;
 			}
-			else if(buttons.reverseOrder.isSelected()) {
-				list = new ReverseOrder(l);
+			else if(e.getSource() == buttons.insertion) {
+				selectedAlg = 0;
 			}
-			else if(buttons.random.isSelected()) {
-				list = new RandomOrder(l);
+			else if(e.getSource() == buttons.selection) {
+				selectedAlg = 1;
 			}
-			else if(buttons.almostOrder.isSelected()) {
-				list = new AlmostOrder(l);
+			else if(e.getSource() == buttons.quick) {
+				selectedAlg = 2;
 			}
+			else if(e.getSource() == buttons.merge) {
+				selectedAlg = 3;
+			}
+			else if(e.getSource() == buttons.heap) {
+				selectedAlg = 4;
+			}
+			else if(e.getSource() == buttons.radix) {
+				selectedAlg = 5;
+			}
+			else if(e.getSource() == buttons.bucket) {
+				selectedAlg = 6;
+			}
+			
+			updateOutput();
+			}
+		catch(Exception err) {
+			err.printStackTrace();
 		}
-		else if(e.getSource() == buttons.insertion) {
-			selectedAlg = 0;
-		}
-		else if(e.getSource() == buttons.selection) {
-			selectedAlg = 1;
-		}
-		else if(e.getSource() == buttons.quick) {
-			selectedAlg = 2;
-		}
-		else if(e.getSource() == buttons.merge) {
-			selectedAlg = 3;
-		}
-		else if(e.getSource() == buttons.heap) {
-			selectedAlg = 4;
-		}
-		else if(e.getSource() == buttons.radix) {
-			selectedAlg = 5;
-		}
-		else if(e.getSource() == buttons.bucket) {
-			selectedAlg = 6;
-		}
-		
-		updateOutput();
 	}
 	protected void updateOutput() {
-		text.NField.setText("");
-		text.DataTypeField.setText("");
-		text.SortField.setText("");
-		text.ComparisonsField.setText("");
-		text.MovementsField.setText("");
-		text.TotalTimeField.setText("");
+		
+		text.NField.setText(Integer.toString(length));
+		text.DataTypeField.setText(dataType);
+		text.SortField.setText(list.operations[selectedAlg].name());
+		text.ComparisonsField.setText(Integer.toString(list.operations[selectedAlg].comparisons()));
+		text.MovementsField.setText(Integer.toString(list.operations[selectedAlg].movements()));
+		text.TotalTimeField.setText(Long.toString(list.operations[selectedAlg].runTime()));
 		text.winner.setText(winner());
 	}
 	protected String winner() {
 		String alg = "";
+		long[] times = new long[7];
+		for(int i = 0; i < 7; i++) {
+			times[i] = list.operations[i].runTime();
+		}
+		long min = times[0];
+		int win = 0;
+		for(int i = 1; i < 7; i++) {
+			if(min > times[i]) {
+				min = times[i];
+				win = i;
+			}
+			times[i] = list.operations[i].runTime();
+		}
+		switch(win) {
+		case 0:	alg = "Insertion Sort";
+				break;
+		case 1:	alg = "Selection Sort";
+				break;
+		case 2:	alg = "Quick Sort";
+				break;
+		case 3:	alg = "Merge Sort";
+				break;
+		case 4:	alg = "Heap Sort";
+				break;
+		case 5:	alg = "Radix Sort";
+				break;
+		case 6:	alg = "Bucket Sort";
+				break;
+		}
 		return alg;
 	}
 	public class Text{
@@ -253,6 +294,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		addWinnerSection();
 		addPropertiesSection();
 		addResultsSection();
+		addActionListeners();
 		
 	}
 	public void addWinnerSection() {

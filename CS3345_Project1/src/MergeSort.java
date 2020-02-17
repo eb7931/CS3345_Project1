@@ -4,6 +4,12 @@ public class MergeSort extends AlgMonitor{
 		name = "Merge Sort";
 	}
 	public void run(int[] list) {
+		startTime = System.currentTimeMillis();
+		mergeSort(list);
+		endTime = System.currentTimeMillis();
+
+	}
+	public void mergeSort(int[] list) {
 		if(list.length > 1) {
 			//merge sort the first half
 			int[] firstHalf = new int[list.length / 2];
@@ -18,7 +24,7 @@ public class MergeSort extends AlgMonitor{
 			merge(firstHalf, secondHalf, list);
 			
 		}
-
+		
 	}
 
 	public void merge(int[] list1, int[] list2, int[] temp) {
@@ -26,14 +32,25 @@ public class MergeSort extends AlgMonitor{
 		int current2 = 0; //current index in list2
 		int current3 = 0; //current index in temp
 		while(current1 < list1.length && current2 < list2.length) {
-			if(list1[current1] < list2[current2])
+			if(list1[current1] < list2[current2]) {
+				compare();
 				temp[current3++] = list1[current1++];
-			else
+				move();
+			}
+			else {
 				temp[current3++] = list2[current2++];
+				move();
+			}
 		}
-		while(current1 < list1.length)
+		while(current1 < list1.length){
+			compare();
 			temp[current3++] = list1[current1++];
-		while(current2 < list2.length)
+			move();
+		}
+		while(current2 < list2.length) {
+			compare();
 			temp[current3++] = list2[current2++];
+			move();
+		}
 	}
 }

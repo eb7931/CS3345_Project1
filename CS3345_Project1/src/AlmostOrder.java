@@ -3,6 +3,7 @@ public class AlmostOrder extends ListManager{
 		super(l);
 		partialSort();
 		copyArr();
+		sortAll();
 	}
 	private void partialSort() {
 		int i = length/2;

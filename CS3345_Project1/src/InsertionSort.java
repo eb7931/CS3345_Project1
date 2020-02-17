@@ -10,9 +10,8 @@ public class InsertionSort extends AlgMonitor{
 			/* inset list[i] into a sorted sublist list[0...i-1] so
 			 * that list[0...i is sorted */
 			int currentElement = list[i];
-			move();
 			int k;
-			for(k = i-1; k >= 0 && list[k] >currentElement; k--) {
+			for(k = i-1; k >= 0 && list[k] > currentElement; k--) {
 				compare();
 				list[k + 1] = list [k];
 				move();

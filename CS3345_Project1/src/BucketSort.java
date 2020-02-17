@@ -9,10 +9,12 @@ public class BucketSort extends AlgMonitor{
 		name = "Bucket Sort";
 	}
 	public void run(int[] list) {
+		startTime = System.currentTimeMillis();
 		bucketSort(list);
+		endTime = System.currentTimeMillis();
 	}
 
-	public static void bucketSort(int[] input) {
+	public void bucketSort(int[] input) {
 	    // get hash codes
 		final int[] code = hash(input);
 	
@@ -25,6 +27,7 @@ public class BucketSort extends AlgMonitor{
 		// distribute data into buckets: O(n)
 		for (int i : input) {
 			buckets[hash(i, code)].add(i);
+			move();
 		}
 
 		// sort each bucket O(n)
@@ -37,21 +40,24 @@ public class BucketSort extends AlgMonitor{
 	    	for (int b = 0; b < buckets.length; b++) {
 		    	for (int v = 0;v < buckets[b].size(); v++) {
 		    		input[ndx++] = v;
+		    		move();
 		      	}
 	    	}
 	    }
 
-	  private static int[] hash(int[] input) {
+	  private int[] hash(int[] input) {
 		  int m = input[0];
 		  for (int i = 1; i < input.length; i++) {
 			  if (m < input[i]) {
+				compare();
 	    	  	m = input[i];
+	    	  	move();
 	    	  }
 		  }
 	    return new int[] { m, (int) Math.sqrt(input.length) };
 	  }
 
-	  private static int hash(int i, int[] code) {
+	  private int hash(int i, int[] code) {
 		  return (int) ((double) i / code[0] * (code[1] - 1));
 	  }
 

@@ -4,17 +4,23 @@ public class HeapSort extends AlgMonitor{
 		name = "Heap Sort";
 	}
 	public void run(int[] list) {
+		startTime = System.currentTimeMillis();
 		heapSort(list);
+		endTime = System.currentTimeMillis();
 	}
 	public <E extends Comparable<E>> void heapSort(int[] list) {
 		//create a heap of integers
 		Heap<Integer> heap = new Heap<>();
 		//add elements to the heap
-		for(int i = 0; i < list.length; i++)
+		for(int i = 0; i < list.length; i++) {
 			heap.add(list[i]);
+			move();
+		}
 		//remove elements from the heap
-		for(int i = list.length - 1; i >= 0; i--)
+		for(int i = list.length - 1; i >= 0; i--) {
 			list[i] = heap.remove();
+			move();
+		}
 	}
 	public class Heap<E extends Comparable<E>> {
 		private java.util.ArrayList<E> list = new java.util.ArrayList<>();
@@ -34,6 +40,7 @@ public class HeapSort extends AlgMonitor{
 				int parentIndex = (currentIndex = 1) / 2;
 				//swap if the current index is greater than its parent
 				if(list.get(currentIndex).compareTo(list.get(parentIndex)) > 0) {
+					compare();
 					E temp = list.get(currentIndex);
 					list.set(currentIndex,  list.get(parentIndex));
 					list.set(parentIndex, temp);
@@ -57,6 +64,7 @@ public class HeapSort extends AlgMonitor{
 				int maxIndex = leftChildIndex;
 				if(rightChildIndex < list.size()) {
 					if(list.get(maxIndex).compareTo(list.get(rightChildIndex)) < 0) {
+						compare();
 						maxIndex = rightChildIndex;
 					}
 				}

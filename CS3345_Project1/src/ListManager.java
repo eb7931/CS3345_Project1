@@ -11,6 +11,9 @@ public class ListManager{
 	protected ListManager() {
 		
 	}
+	public int length() {
+		return length;
+	}
 	private void makeRandom() {
 		arr = new int[8][length];
 		for(int i = 0; i < length; i++) {
@@ -34,27 +37,6 @@ public class ListManager{
 		operations[5] = new RadixSort(arr[6]);
 		operations[6] = new BucketSort(arr[7]);
 	}
-	public void insertionSort() {
-		
-	}
-	public void selectionSort() {
-		
-	}
-	public void quickSort() {
-		
-	}
-	public void mergeSort() {
-		
-	}
-	public void heapSort() {
-		
-	}
-	public void radixSort() {
-		
-	}
-	public void bucketSort() {
-		
-	}	
 	protected void sort() {
 		for(int i = 1; i < arr[0].length; i ++) {
 			/* inset list[i] into a sorted sublist list[0...i-1] so
