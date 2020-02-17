@@ -10,7 +10,7 @@ public class AlmostOrder extends ListManager{
 		for(int j = 0; j < i; j++) {
 			temp[j] = arr[0][j];
 		}
-		Sort.insertionSort(temp);
+		sort(temp);
 		for(int j = 0; j < i; j++) {
 			arr[0][j] = temp[j];
 		}

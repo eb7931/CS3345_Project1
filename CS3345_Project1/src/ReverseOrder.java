@@ -1,7 +1,7 @@
 public class ReverseOrder extends ListManager{
 	ReverseOrder(int l){
 		super(l);
-		Sort.insertionSort(arr[0]);
+		sort();
 		invert();
 		copyArr();
 	}
