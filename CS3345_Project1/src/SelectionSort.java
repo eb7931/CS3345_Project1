@@ -13,17 +13,14 @@ public class SelectionSort extends AlgMonitor{
 			int currentMinIndex = i;
 			for(int j = i + 1; j < list.length; j++) {
 				if(currentMin > list[j]) {
-					compare();
 					currentMin = list[j];
-					move();
 					currentMinIndex = j;
-					move();
 				}
+				compare();
 			}
 			//swap list[i] with list[currentMinIndex] if necessary
 			if(currentMinIndex != i) {
 				list[currentMinIndex] = list[i];
-				move();
 				list[i] = currentMin;
 				move();
 			}

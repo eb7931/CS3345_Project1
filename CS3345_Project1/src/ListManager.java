@@ -1,15 +1,46 @@
+import java.io.*;
+
 public class ListManager{
 	protected int[][] arr;
 	protected AlgMonitor[] operations = new AlgMonitor[7];
 	protected int length = 0;
+	protected String csv;
 	/*store the number of operations for each sort method, in this order
 	 * Insertion, selection, quick, merge, heap, radix	 */
 	protected ListManager(int l){
 		setLength(l);
 		makeRandom();
+		csv = "arrays.csv";
 	}
 	protected ListManager() {
 		
+	}
+	protected void append(String str) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(csv, true));
+			out.write(str);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	protected void printToFile() {
+		append("Original Array,");
+		for(int i = 0; i < 7; i++) {
+			append(operations[i].name());
+			if(i<6)
+				append(",");
+			
+		}
+		for(int i = 0; i < length; i++) {
+			if(i != 0);
+			append("\n");
+			for(int j = 0; j < 8; j++) {
+				append(Integer.toString(arr[j][i]));
+				if(j < 7)
+					append(",");
+			}
+		}
 	}
 	public int length() {
 		return length;
@@ -36,6 +67,7 @@ public class ListManager{
 		operations[4] = new HeapSort(arr[5]);
 		operations[5] = new RadixSort(arr[6]);
 		operations[6] = new BucketSort(arr[7]);
+		printToFile();
 	}
 	protected void sort() {
 		for(int i = 1; i < arr[0].length; i ++) {
