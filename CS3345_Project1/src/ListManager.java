@@ -25,22 +25,26 @@ public class ListManager{
 		}
 	}
 	protected void printToFile() {
-		append("Original Array,");
+		String temp = "";
+		temp += "Original Array,";
 		for(int i = 0; i < 7; i++) {
-			append(operations[i].name());
-			if(i<6)
-				append(",");
+			temp += operations[i].name();
+			if(i<6) {
+				temp += ",";
+			}
 			
 		}
 		for(int i = 0; i < length; i++) {
 			if(i != 0);
-			append("\n");
+			temp += "\n";
 			for(int j = 0; j < 8; j++) {
-				append(Integer.toString(arr[j][i]));
-				if(j < 7)
-					append(",");
+				temp += Integer.toString(arr[j][i]);
+				if(j < 7) {
+					temp += ",";
+				}
 			}
 		}
+		append(temp);
 	}
 	public int length() {
 		return length;

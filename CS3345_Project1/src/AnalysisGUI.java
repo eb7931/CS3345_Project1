@@ -68,10 +68,15 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		
 		text.NField.setText(Integer.toString(length));
 		text.DataTypeField.setText(dataType);
+		try {
 		text.SortField.setText(list.operations[selectedAlg].name());
 		text.ComparisonsField.setText(Integer.toString(list.operations[selectedAlg].comparisons()));
 		text.MovementsField.setText(Integer.toString(list.operations[selectedAlg].movements()));
 		text.TotalTimeField.setText(Long.toString(list.operations[selectedAlg].runTime()));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		text.winner.setText(winner());
 	}
 	protected String winner() {
