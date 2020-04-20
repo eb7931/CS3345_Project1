@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 public class AnalysisGUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	protected ListManager lists = new ListManager(0);
+	protected ListManager lists = new ListManager(0, "");
 	protected Buttons buttons = new Buttons();
 	protected Text text = new Text();
 	protected ListManager list;
 	protected int selectedAlg = 0;
 	private String dataType = "";
 	protected int length = 0;
+	protected int repeats = 1;
 
 	//Everything  needed to create the window in the format I want
 
@@ -17,24 +18,30 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if(e.getSource() == buttons.create) {
-				int l = Integer.parseInt(text.sizeField.getText());
-				if(buttons.inOrder.isSelected()) {
-					list = new InOrder(l);
-					dataType = "In order";
+				repeats = Integer.parseInt(text.repeatsField.getText());
+
+				setTitle("Runtime Analyzer (Processing)");
+				for(int i = 0; i < repeats; i ++) {
+					int l = Integer.parseInt(text.sizeField.getText());
+					if(buttons.inOrder.isSelected()) {
+						dataType = "In order";
+						list = new InOrder(l, dataType);
+					}
+					else if(buttons.reverseOrder.isSelected()) {
+						dataType = "Reverse order";
+						list = new ReverseOrder(l, dataType);
+					}
+					else if(buttons.random.isSelected()) {
+						dataType = "Random order";
+						list = new RandomOrder(l, dataType);
+					}
+					else if(buttons.almostOrder.isSelected()) {
+						dataType = "Almost order";
+						list = new AlmostOrder(l, dataType);
+					}
+					length = l;
 				}
-				else if(buttons.reverseOrder.isSelected()) {
-					list = new ReverseOrder(l);
-					dataType = "Reverse order";
-				}
-				else if(buttons.random.isSelected()) {
-					list = new RandomOrder(l);
-					dataType = "Random order";
-				}
-				else if(buttons.almostOrder.isSelected()) {
-					list = new AlmostOrder(l);
-					dataType = "Almost order";
-				}
-				length = l;
+				setTitle("Runtime Analyzer");
 			}
 			else if(e.getSource() == buttons.insertion) {
 				selectedAlg = 0;
@@ -117,6 +124,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		JTextField winner = new JTextField("");
 		//All fields in the Properties Section
 		JTextField sizeField = new JTextField("");
+		JTextField repeatsField = new JTextField("");
 		//Results section	
 		JTextField NField = new JTextField("");
 		JTextField DataTypeField = new JTextField("");
@@ -135,6 +143,7 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		JTextField heading2 = new JTextField("List Properties");
 		JTextField heading3 = new JTextField("Experimental Results:");
 		JTextField sizeLabel = new JTextField("List Length");
+		JTextField repeatsLabel = new JTextField("Number of tests");
 		
 		public Text() {
 			NField.setEditable(false);
@@ -200,6 +209,12 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 			sizeLabel.setFont(Styles.plainTextFont);
 			sizeLabel.setHorizontalAlignment(JTextField.CENTER);
 	        sizeLabel.setEditable(false);
+	        
+			repeatsLabel.setBackground(Styles.backgroundColor);
+			repeatsLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+			repeatsLabel.setFont(Styles.plainTextFont);
+			repeatsLabel.setHorizontalAlignment(JTextField.CENTER);
+			repeatsLabel.setEditable(false);
 		}
 		
 	}
@@ -357,6 +372,10 @@ public class AnalysisGUI extends JFrame implements ActionListener {
 		propertiesSection.add(text.sizeLabel, c);
 		c.gridy++;
 		propertiesSection.add(text.sizeField, c);
+		c.gridy++;
+		propertiesSection.add(text.repeatsLabel, c);
+		c.gridy++;
+		propertiesSection.add(text.repeatsField, c);
 		c.gridy++;
 		propertiesSection.add(buttons.create, c);
 		

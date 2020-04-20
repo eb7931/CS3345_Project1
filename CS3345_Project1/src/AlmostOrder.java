@@ -1,6 +1,6 @@
 public class AlmostOrder extends ListManager{
-	AlmostOrder(int l){
-		super(l);
+	AlmostOrder(int l,String s){
+		super(l,s);
 		partialSort();
 		copyArr();
 		sortAll();

@@ -40,12 +40,12 @@ public class MergeSort extends AlgMonitor{
 			}
 		}
 		while(current1 < list1.length){
-			compare();
+			//compare();
 			temp[current3++] = list1[current1++];
 			move();
 		}
 		while(current2 < list2.length) {
-			compare();
+			//compare();
 			temp[current3++] = list2[current2++];
 			move();
 		}

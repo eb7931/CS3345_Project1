@@ -1,6 +1,6 @@
 public class ReverseOrder extends ListManager{
-	ReverseOrder(int l){
-		super(l);
+	ReverseOrder(int l,String s){
+		super(l,s);
 		sort();
 		invert();
 		copyArr();

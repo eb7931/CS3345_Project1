@@ -19,11 +19,11 @@ public class SelectionSort extends AlgMonitor{
 				compare();
 			}
 			//swap list[i] with list[currentMinIndex] if necessary
-			if(currentMinIndex != i) {
+			//if(currentMinIndex != i) {
 				list[currentMinIndex] = list[i];
 				list[i] = currentMin;
 				move();
-			}
+			//}
 		}
 		endTime = System.currentTimeMillis();
 	}

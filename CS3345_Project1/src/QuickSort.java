@@ -12,7 +12,7 @@ public class QuickSort extends AlgMonitor{
 	}
 	public void quickSort(int[] list, int first, int last) {
 		if(last > first) {
-			compare();
+			//compare();
 			int pivotIndex = partition(list, first, last);
 			quickSort(list, first, pivotIndex - 1);
 			quickSort(list, pivotIndex + 1, last);
@@ -25,7 +25,7 @@ public class QuickSort extends AlgMonitor{
 		int high = last; // index for backward search
 		
 		while(high > low) {
-			compare();
+			//compare();
 			// search from left
 			while(low <= high && list[low] <= pivot) {
 				compare();
@@ -38,7 +38,7 @@ public class QuickSort extends AlgMonitor{
 			}
 			//swap two element in the list
 			if(high>low) {
-				compare();
+				//compare();
 				int temp = list[high];
 				move();
 				list[high] = list[low];
